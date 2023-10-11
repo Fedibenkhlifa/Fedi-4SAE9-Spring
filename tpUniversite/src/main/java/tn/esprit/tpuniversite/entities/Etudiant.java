@@ -1,23 +1,37 @@
 package tn.esprit.tpuniversite.entities;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import lombok.Getter;
 
 import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
+
 @Entity
 @Table(name = "Etudiant")
 
-public class Etudiant {
+public class Etudiant implements Serializable {
 
+    @Getter
     @Id
     private Long idEtudiant;
+    @Getter
     private String nomEt;
+    @Getter
     private String prenomEt;
+    @Getter
     private Long cin;
+    @Getter
     private String ecole;
+    @Getter
     private Date dateNaissance;
 
+    @ManyToMany(mappedBy="etudiants", cascade = CascadeType.ALL)
+    private Set<Reservation> reservations;
     // Constructeurs, getters et setters
 
     public Etudiant() {}
@@ -33,48 +47,24 @@ public class Etudiant {
 
     // Getters et Setters
 
-    public Long getIdEtudiant() {
-        return idEtudiant;
-    }
-
     public void setIdEtudiant(Long idEtudiant) {
         this.idEtudiant = idEtudiant;
-    }
-
-    public String getNomEt() {
-        return nomEt;
     }
 
     public void setNomEt(String nomEt) {
         this.nomEt = nomEt;
     }
 
-    public String getPrenomEt() {
-        return prenomEt;
-    }
-
     public void setPrenomEt(String prenomEt) {
         this.prenomEt = prenomEt;
-    }
-
-    public Long getCin() {
-        return cin;
     }
 
     public void setCin(Long cin) {
         this.cin = cin;
     }
 
-    public String getEcole() {
-        return ecole;
-    }
-
     public void setEcole(String ecole) {
         this.ecole = ecole;
-    }
-
-    public Date getDateNaissance() {
-        return dateNaissance;
     }
 
     public void setDateNaissance(Date dateNaissance) {

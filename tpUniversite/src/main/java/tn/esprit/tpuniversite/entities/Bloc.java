@@ -2,21 +2,31 @@ package tn.esprit.tpuniversite.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import lombok.Getter;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Set;
+
 @Entity
 @Table(name = "Bloc")
-public class Bloc {
+public class Bloc implements Serializable {
 
+    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idBloc;
+    @Getter
     private String nomBloc;
+    @Getter
     private Long capaciteBloc;
 
-    // Constructeurs, getters et setters
+    @ManyToOne
+    private Foyer foyer;
+    @OneToMany (mappedBy = "bloc", cascade = CascadeType.ALL)
+    private Set<Chambre> chambres;
+
 
     public Bloc() {}
 
@@ -27,24 +37,12 @@ public class Bloc {
 
     // Getters et Setters
 
-    public Long getIdBloc() {
-        return idBloc;
-    }
-
     public void setIdBloc(Long idBloc) {
         this.idBloc = idBloc;
     }
 
-    public String getNomBloc() {
-        return nomBloc;
-    }
-
     public void setNomBloc(String nomBloc) {
         this.nomBloc = nomBloc;
-    }
-
-    public Long getCapaciteBloc() {
-        return capaciteBloc;
     }
 
     public void setCapaciteBloc(Long capaciteBloc) {

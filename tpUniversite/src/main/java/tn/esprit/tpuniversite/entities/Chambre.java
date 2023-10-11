@@ -1,54 +1,57 @@
 package tn.esprit.tpuniversite.entities;
 
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Set;
+
 @Entity
 @Table(name = "Chambre")
-
-public class Chambre {
+public class Chambre implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Utilisation d'une clé générée automatiquement
+    @Column(name = "idChambre")
     private Long idChambre;
-    private String nomChambre;
+
+    @Column(name = "numeroChambre")
+    private Long numeroChambre;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "typeC")
     private TypeChambre typeC;
+
+   @ManyToOne
+    private Bloc bloc;
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<Reservation> reservations;
+
+
 
     // Constructeurs, getters et setters
 
     public Chambre() {}
 
-    public Chambre(String nomChambre, TypeChambre typeC) {
-        this.nomChambre = nomChambre;
+    public Chambre(Long numeroChambre, TypeChambre typeC) {
+        this.numeroChambre = numeroChambre;
         this.typeC = typeC;
     }
 
-    // Getters et Setters
-
-    public Long getIdChambre() {
-        return idChambre;
-    }
+    // Getters et setters
 
     public void setIdChambre(Long idChambre) {
         this.idChambre = idChambre;
     }
 
-    public String getNomChambre() {
-        return nomChambre;
-    }
-
-    public void setNomChambre(String nomChambre) {
-        this.nomChambre = nomChambre;
-    }
-
-    public TypeChambre getTypeC() {
-        return typeC;
+    public void setNumeroChambre(Long numeroChambre) {
+        this.numeroChambre = numeroChambre;
     }
 
     public void setTypeC(TypeChambre typeC) {
         this.typeC = typeC;
     }
 }
+

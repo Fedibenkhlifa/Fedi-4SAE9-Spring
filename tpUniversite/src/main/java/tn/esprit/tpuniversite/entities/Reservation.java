@@ -1,19 +1,33 @@
 package tn.esprit.tpuniversite.entities;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import lombok.Getter;
 
 import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
+
 @Entity
 @Table(name = "Reservation")
 
-public class Reservation {
+public class Reservation implements Serializable {
 
+    @Getter
     @Id
     private String idReservation;
+    @Getter
     private Date anneeUniversitaire;
+    @Getter
     private boolean estValide;
+
+
+   @ManyToMany(cascade = CascadeType.ALL)
+    private Set<Etudiant> etudiants;
+
 
     // Constructeurs, getters et setters
 
@@ -27,24 +41,12 @@ public class Reservation {
 
     // Getters et Setters
 
-    public String getIdReservation() {
-        return idReservation;
-    }
-
     public void setIdReservation(String idReservation) {
         this.idReservation = idReservation;
     }
 
-    public Date getAnneeUniversitaire() {
-        return anneeUniversitaire;
-    }
-
     public void setAnneeUniversitaire(Date anneeUniversitaire) {
         this.anneeUniversitaire = anneeUniversitaire;
-    }
-
-    public boolean isEstValide() {
-        return estValide;
     }
 
     public void setEstValide(boolean estValide) {
