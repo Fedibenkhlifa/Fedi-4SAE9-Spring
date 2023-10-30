@@ -30,7 +30,7 @@ public class FoyerController {
         public void removeFoyer(@PathVariable("foyer-id") Long idFoyer){
             foyerService.removeFoyer(idFoyer);
         }
-    @PostMapping("/archiver-foyer/{idFoyer}")
+    @PutMapping("/archiver-foyer/{idFoyer}")
     public void archiverFoyer(@PathVariable("idFoyer") Long idFoyer) {
         foyerService.archiverFoyer(idFoyer);
     }
