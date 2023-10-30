@@ -4,53 +4,28 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import javax.persistence.Table;
-import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
+
 @Entity
-@Table(name = "Reservation")
-
-public class Reservation implements Serializable {
-
-    @Getter
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class Reservation {
     @Id
+
     private String idReservation;
-    @Getter
+
     private Date anneeUniversitaire;
-    @Getter
     private boolean estValide;
 
-
-   @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL)
     private Set<Etudiant> etudiants;
-
-
-    // Constructeurs, getters et setters
-
-    public Reservation() {}
-
-    public Reservation(String idReservation, Date anneeUniversitaire, boolean estValide) {
-        this.idReservation = idReservation;
-        this.anneeUniversitaire = anneeUniversitaire;
-        this.estValide = estValide;
-    }
-
-    // Getters et Setters
-
-    public void setIdReservation(String idReservation) {
-        this.idReservation = idReservation;
-    }
-
-    public void setAnneeUniversitaire(Date anneeUniversitaire) {
-        this.anneeUniversitaire = anneeUniversitaire;
-    }
-
-    public void setEstValide(boolean estValide) {
-        this.estValide = estValide;
-    }
 }
-
