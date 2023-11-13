@@ -3,7 +3,9 @@ package tn.esprit.tpuniversite.services;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import tn.esprit.tpuniversite.entities.Foyer;
+import tn.esprit.tpuniversite.entities.Universite;
 import tn.esprit.tpuniversite.repositories.FoyerRepository;
+import tn.esprit.tpuniversite.repositories.UniversiteRepository;
 
 import java.util.List;
 
@@ -12,6 +14,7 @@ import java.util.List;
 
 public class FoyerServiceimpl implements IFoyerService {
     FoyerRepository Foy;
+    UniversiteRepository unr;
 
     @Override
     public List<Foyer> retrieveAllFoyers() {
@@ -47,4 +50,17 @@ public class FoyerServiceimpl implements IFoyerService {
             Foy.save(foyer);
         }
     }
+
+    @Override
+    public Foyer ajouterFoyerEtAffecterAUniversite(Foyer foyer, long idUniversite) {
+        Foyer foyerNv = Foy.save(foyer);
+        Universite universite = unr.findById(idUniversite).get();
+        universite.setFoyer(foyerNv);
+        unr.save(universite);
+        return foyerNv;
+
+
+    }
+
+
 }

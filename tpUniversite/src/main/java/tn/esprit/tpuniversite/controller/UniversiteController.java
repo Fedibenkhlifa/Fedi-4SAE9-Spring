@@ -32,4 +32,14 @@ public class UniversiteController {
     public void removeUniversite(@PathVariable("universite-id") Long idUniversite ){
         universiteService.removeUniversite(idUniversite);
     }
+    @PutMapping("/affecterFoyerAUniversite/{nomUniversite}/{idFoyer}")
+    public void assignFoyerToUniversite(@PathVariable("nomUniversite") String nomUniversite,
+                                             @PathVariable("idFoyer") Long idFoyer) {
+        universiteService.affecterFoyerAUniversite(idFoyer , nomUniversite);
+    }
+    @PutMapping("/desaffecterFoyerAUniversite/{idUniversite}")
+    public void disallowFoyerToUniversite(@PathVariable("idUniversite") Long idUniversite) {
+        universiteService.desaffecterFoyerAUniversite(idUniversite );
+    }
+
 }
