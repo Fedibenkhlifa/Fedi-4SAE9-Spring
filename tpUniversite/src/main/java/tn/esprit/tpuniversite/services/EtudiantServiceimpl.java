@@ -3,7 +3,9 @@ package tn.esprit.tpuniversite.services;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import tn.esprit.tpuniversite.entities.Etudiant;
+import tn.esprit.tpuniversite.entities.Reservation;
 import tn.esprit.tpuniversite.repositories.EtudiantRepository;
+import tn.esprit.tpuniversite.repositories.ReservationRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +17,7 @@ import java.util.List;
 public class EtudiantServiceimpl implements IEtudiantService{
 
     EtudiantRepository etr ;
-
+    ReservationRepository reservationRepository;
 
     @Override
     public List <Etudiant> retrieveAllEtudiants() {
@@ -51,6 +53,18 @@ public class EtudiantServiceimpl implements IEtudiantService{
 
         return addedEtudiants;
     }
+    public Etudiant affecterEtudiantAReservation(String nomEt, String prenomEt, String idReservation){
+
+
+        Reservation reservation = reservationRepository.findById(idReservation).get();
+        Etudiant etudiant = etr.findByNomEtAndPrenomEt(nomEt, prenomEt) ;
+            reservation.getEtudiants().add(etudiant);
+reservation.getEtudiants().add(etudiant);
+            reservationRepository.save(reservation);
+
+            return etudiant;
+        }
     }
+
 
 

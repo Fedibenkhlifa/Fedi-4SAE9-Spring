@@ -7,28 +7,29 @@ import tn.esprit.tpuniversite.entities.Chambre;
 import tn.esprit.tpuniversite.repositories.BlocRepository;
 import tn.esprit.tpuniversite.repositories.ChambreRepository;
 
-import java.util.HashSet;
 import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class BlocServiceimpl implements IBlocService{
-    BlocRepository br ;
-    ChambreRepository cr;
+public class BlocServiceimpl implements IBlocService {
+    BlocRepository br;
+    ChambreRepository CH;
 
     @Override
     public List<Bloc> retrieveAllBloc() {
+
         return br.findAll();
     }
 
     @Override
     public Bloc addBloc(Bloc b) {
+
         return br.save(b);
     }
 
     @Override
     public Bloc updateBloc(Bloc b) {
-        return br.save(b) ;
+        return br.save(b);
     }
 
     @Override
@@ -43,18 +44,19 @@ public class BlocServiceimpl implements IBlocService{
     }
 
     @Override
-    public Bloc affecterChambresABloc(List<Long> numChambre, long idBloc) {
+    public Bloc affecterChambresABloc(List<Long> idChambres, long idBloc) {
+        // Récupérer le bloc
         Bloc bloc = br.findById(idBloc).get();
-        List<Chambre> chambres = cr.findAllById(numChambre);
-        for (Chambre chambre : chambres) {
-            chambre.setBloc(bloc);
-        }
 
-        bloc.setChambres(new HashSet<>(chambres));
+        // Récupérer les chambres par leurs identifiants
+        List<Chambre> chambreList = (List<Chambre>)CH.findAllById(idChambres);
 
-        return br.save(bloc);
+      for (Chambre chambre:chambreList){
+          chambre.setBloc(bloc);
+          br.save(bloc);
+      }
+        br.save(bloc);
 
+        return bloc;
     }
-
-
 }

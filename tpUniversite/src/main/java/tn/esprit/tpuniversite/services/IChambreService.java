@@ -1,22 +1,24 @@
 package tn.esprit.tpuniversite.services;
 
-import tn.esprit.tpuniversite.entities.Bloc;
 import tn.esprit.tpuniversite.entities.Chambre;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface IChambreService {
 
-        List<Bloc> retrieveAllChambre();
+        List<Chambre> retrieveAllChambre();
 
-        Bloc addChambre(Chambre c);
+        Chambre addChambre(Chambre c);
 
-        Bloc updateBloc(Chambre c);
+        Chambre updateChambre(Chambre c);
 
-        Bloc retrieveChambre(Long idChambre);
+        Optional<Chambre> retrieveChambre(Long idChambre);
 
-        void removeBloc(Long idChambre);
+        void removeChambre(Long idChambre);
+        List<Chambre> getChambresParNomBloc(String nomBloc);
+        long nbrChambreParTypeEtBloc(Chambre.TypeChambre type, long idBloc);
 
-    }
+}
 
 

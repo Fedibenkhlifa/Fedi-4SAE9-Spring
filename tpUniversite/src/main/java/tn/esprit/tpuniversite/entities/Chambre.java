@@ -1,6 +1,8 @@
 package tn.esprit.tpuniversite.entities;
-import lombok.Getter;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
@@ -21,6 +23,7 @@ public class Chambre implements Serializable {
 
     private TypeChambre typeChambre;
     @ManyToOne
+    @JsonIgnore
     Bloc bloc;
     @OneToMany(cascade = CascadeType.ALL)
     private Set<Reservation> Reservations;

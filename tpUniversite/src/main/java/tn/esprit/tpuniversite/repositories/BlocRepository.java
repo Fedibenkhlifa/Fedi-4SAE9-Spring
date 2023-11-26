@@ -6,5 +6,6 @@ import tn.esprit.tpuniversite.entities.Bloc;
 
 @Repository
 public interface BlocRepository extends JpaRepository<Bloc, Long> {
+    Bloc findBlocByNomBloc(String nombloc);
 
 }

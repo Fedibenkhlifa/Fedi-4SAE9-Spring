@@ -30,9 +30,8 @@ public class BlocController {
     public void removeFoyer(@PathVariable("bloc-id") Long idBloc){
         blocService.removeBloc(idBloc);
     }
-    @PutMapping("/affecterChambresABloc/{numChambre}/{idBloc}")
-    public void affectationChambresABloc(@PathVariable("numChambre") List<Long> numChambre,
-                                        @PathVariable("idBloc") Long idBloc) {
-        blocService.affecterChambresABloc(numChambre,idBloc);
+    @PostMapping("/affecter-chambres-au-bloc/{idBloc}")
+    public Bloc affecterChambresABloc(@RequestBody List<Long> idChambres, @PathVariable("idBloc") long idBloc) {
+        return blocService.affecterChambresABloc(idChambres, idBloc);
     }
 }

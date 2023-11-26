@@ -1,5 +1,6 @@
 package tn.esprit.tpuniversite.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -27,5 +28,6 @@ public class Reservation {
     private boolean estValide;
 
     @ManyToMany(cascade = CascadeType.ALL)
+    @JsonIgnore
     private Set<Etudiant> etudiants;
 }

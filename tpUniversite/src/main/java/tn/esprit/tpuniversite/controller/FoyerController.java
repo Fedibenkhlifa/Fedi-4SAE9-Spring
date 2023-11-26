@@ -30,10 +30,12 @@ public class FoyerController {
         public void removeFoyer(@PathVariable("foyer-id") Long idFoyer){
             foyerService.removeFoyer(idFoyer);
         }
+
     @PutMapping("/archiver-foyer/{idFoyer}")
     public void archiverFoyer(@PathVariable("idFoyer") Long idFoyer) {
         foyerService.archiverFoyer(idFoyer);
     }
+
     @PostMapping("/ajouter-et-affecter-a-universite/{idUniversite}")
     public void ajouterFoyerEtAffecterAUniversite(@RequestBody Foyer foyer, @PathVariable long idUniversite) {
         foyerService.ajouterFoyerEtAffecterAUniversite(foyer, idUniversite);
