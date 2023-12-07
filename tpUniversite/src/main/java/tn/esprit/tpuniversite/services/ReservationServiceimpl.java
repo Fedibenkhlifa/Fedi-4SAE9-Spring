@@ -1,6 +1,7 @@
 package tn.esprit.tpuniversite.services;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import tn.esprit.tpuniversite.entities.Reservation;
 import tn.esprit.tpuniversite.repositories.ChambreRepository;
@@ -11,7 +12,7 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-
+@Slf4j
 public class ReservationServiceimpl implements IReservationService{
     ReservationRepository Res ;
      EtudiantRepository etudiantRepository;

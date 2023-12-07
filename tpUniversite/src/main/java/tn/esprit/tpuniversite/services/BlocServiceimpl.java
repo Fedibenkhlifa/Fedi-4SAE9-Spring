@@ -21,6 +21,15 @@ public class BlocServiceimpl implements IBlocService {
         return br.findAll();
     }
 
+    //@Override
+    //public List<String> retrieveAllBlocNames() {
+     //   List<Bloc> blocs = br.findAll();
+      //  List<String> blocNames = new ArrayList<>();
+       // for (Bloc bloc : blocs) {
+         //   blocNames.add(bloc.getNomBloc());}
+        //return blocNames;}
+
+
     @Override
     public Bloc addBloc(Bloc b) {
 
